@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Roberto Costa Coêlho</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  scroll-behavior:smooth;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+  background:#071421;
+  color:#fff;
+}
+
+header{
+  width:100%;
+  padding:20px 8%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  position:fixed;
+  top:0;
+  left:0;
+  background:rgba(7,20,33,0.95);
+  backdrop-filter:blur(8px);
+  z-index:1000;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+.logo{
+  font-size:28px;
+  font-weight:bold;
+  color:#4da6ff;
+}
+
+nav a{
+  text-decoration:none;
+  color:#fff;
+  margin-left:25px;
+  transition:0.3s;
+  font-weight:500;
+}
+
+nav a:hover{
+  color:#4da6ff;
+}
+
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:120px 8%;
+  gap:50px;
+}
+
+.hero-text{
+  max-width:600px;
+}
+
+.hero-text h1{
+  font-size:58px;
+  margin-bottom:20px;
+  line-height:1.1;
+}
+
+.hero-text h1 span{
+  color:#4da6ff;
+}
+
+.hero-text p{
+  font-size:18px;
+  line-height:1.8;
+  color:#cfd8e3;
+  margin-bottom:30px;
+}
+
+.btn{
+  display:inline-block;
+  padding:15px 35px;
+  background:#4da6ff;
+  color:#fff;
+  text-decoration:none;
+  border-radius:10px;
+  transition:0.3s;
+  font-weight:bold;
+  box-shadow:0 0 15px rgba(77,166,255,0.5);
+}
+
+.btn:hover{
+  transform:translateY(-4px);
+  background:#3399ff;
+}
+
+.hero-image{
+  width:380px;
+  height:380px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#4da6ff,#0b2d52);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 0 40px rgba(77,166,255,0.35);
+  overflow:hidden;
+}
+
+.hero-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+section{
+  padding:100px 8%;
+}
+
+.title{
+  font-size:40px;
+  margin-bottom:50px;
+  color:#4da6ff;
+  text-align:center;
+}
+
+.about{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:50px;
+  align-items:center;
+}
+
+.about img{
+  width:100%;
+  border-radius:20px;
+  box-shadow:0 0 25px rgba(77,166,255,0.2);
+}
+
+.about-text p{
+  line-height:1.9;
+  color:#cfd8e3;
+  font-size:17px;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:25px;
+}
+
+.card{
+  background:#0d1f31;
+  padding:30px;
+  border-radius:18px;
+  transition:0.3s;
+  border:1px solid rgba(255,255,255,0.06);
+}
+
+.card:hover{
+  transform:translateY(-8px);
+  border-color:#4da6ff;
+  box-shadow:0 0 25px rgba(77,166,255,0.2);
+}
+
+.card h3{
+  color:#4da6ff;
+  margin-bottom:15px;
+}
+
+.card p{
+  color:#cfd8e3;
+  line-height:1.7;
+}
+
+.project{
+  background:#0d1f31;
+  border-radius:20px;
+  overflow:hidden;
+  transition:0.3s;
+  margin-bottom:30px;
+}
+
+.project-content{
+  padding:25px;
+}
+
+.project-content p{
+  color:#cfd8e3;
+  line-height:1.8;
+  margin-bottom:10px;
+}
+
+/* ===== CARROSSEL ===== */
+
+.carrossel-container{
+  position:relative;
+  width:100%;
+  max-width:1000px;
+  margin:auto;
+  overflow:hidden;
+  border-radius:20px;
+  box-shadow:0 0 30px rgba(77,166,255,0.15);
+}
+
+.carrossel{
+  display:flex;
+  transition:transform 0.5s ease-in-out;
+}
+
+.carrossel img{
+  width:100%;
+  height:500px;
+  flex-shrink:0;
+  object-fit:contain;
+  background:#081521;
+  padding:10px;
+}
+
+.btn-carrossel{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background:rgba(0,0,0,0.5);
+  color:#fff;
+  border:none;
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  cursor:pointer;
+  font-size:28px;
+  z-index:10;
+  transition:0.3s;
+}
+
+.btn-carrossel:hover{
+  background:#4da6ff;
+}
+
+.prev{
+  left:15px;
+}
+
+.next{
+  right:15px;
+}
+
+.indicadores{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  margin-top:20px;
+}
+
+.indicador{
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  background:#5f6b7a;
+  cursor:pointer;
+}
+
+.indicador.ativo{
+  background:#4da6ff;
+}
+
+footer{
+  text-align:center;
+  padding:40px;
+  border-top:1px solid rgba(255,255,255,0.08);
+  color:#cfd8e3;
+}
+
+@media(max-width:950px){
+
+  .hero{
+    flex-direction:column;
+    text-align:center;
+  }
+
+  .about{
+    grid-template-columns:1fr;
+  }
+
+  nav{
+    display:none;
+  }
+
+  .hero-text h1{
+    font-size:42px;
+  }
+
+  .hero-image{
+    width:280px;
+    height:280px;
+  }
+
+  .carrossel img{
+    height:260px;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">ENG.</div>
+
+<nav>
+<a href="#inicio">Início</a>
+<a href="#sobre">Sobre</a>
+<a href="#formacao">Formação Acadêmica</a>
+<a href="#experiencia">Experiência Profissional</a>
+<a href="#cursos">Cursos</a>
+<a href="#certificados">Certificados</a>
+<a href="#contato">Contato</a>
+</nav>
+
+</header>
+
+<section class="hero" id="inicio">
+
+<div class="hero-text">
+
+<h1>
+Engenheiro Civil, Ambiental, Sanitárista e da Saúde do Trabalhador
+<span>Especialista</span><br>
+em Soluções Modernas
+</h1>
+
+<p>
+Desenvolvimento de projetos inovadores, planejamento técnico,
+gerenciamento de projetos e soluções de engenharia com foco em
+tecnologia, eficiência e resultados.
+</p>
+
+<a href="#contato" class="btn">Entrar em Contato</a>
+
+</div>
+
+<div class="hero-image">
+<img src="./img/foto001.jpg" alt="Engenheiro">
+</div>
+
+</section>
+
+<section id="sobre">
+
+<h2 class="title">Sobre Mim</h2>
+
+<div class="about">
+
+<img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?q=80&w=1200" alt="Projeto">
+
+<div class="about-text">
+
+<p> Eu, Roberto Costa Coêlho, sou Engenheiro Civil, da Saúde, Sanitarista, Ambiental e com conclusão de curso de engenharia de Segurança do Trabalho (pendente apenas meu tcc/monografia), 
+  ex-funcionário da extinta FIAM (Fundação do Desenvolvimento Municipal do Interior de Pernambuco - Órgão de planejamento), desde 1979, ficando à disposição da Agência Pernambucana de Vigilância Sanitária (APEVISA/SES)
+  desde que ela passou a ser vinculada ao IRH, hoje IASSEPE, servidor da Vigilância Sanitária desde 1990, antes da criação da referida agência, fui á época, Gerente substituto da Agência de VigiLância Snaitária do Estado
+  quando ainda não era Agência (APEVISA), além de assumir vários cargos nesta INSTITUIÇÃO e em diversos setores da Secretaria de Saúde do Estado de Pernambuco, Gerente de Aprovação de Projetos e de Obras de Saneamento.
+  Esclareço ainda que, também fui Gerente de Vigilância Sanitária de Olinda e dê consultoria à Vigilância Sanitária de São lourenço da Mata, bem como, fui membro da conselho de Administração da Companhia Pernambucana de Meio Ambiente - CPRH,
+  representando a Vigilância Sanitária do Estado, e também representante em alguns comitês de Bacias Hidrográficas do Estado de Pernambuco e membro da Comissão de Licitação representando a FIAM, junto a ADDIPER, além de ser Vice-Presidente 
+  da Associação Brasileira de Engenharia Sanitária e Ambiental (Seção Regional Pernambuco). </p>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="formacao">
+
+<h2 class="title">Formação Acadêmica</h2>
+
+<div class="project">
+
+<div class="project-content">
+
+<b><p>Formação Acadêmica:</p></b>
+
+    <p>Ensino Médio: Colégio Salesiano / Colégio Estadual de Pernambuco</p>
+
+    <p>Ensino Superior: Bacharelado en Engenheira Civil na Escola de Engenharia do Centro de Tecnologia da Universidade Federal de Pernambuco (UFPE)</p>
+
+    <p>Especialização em Administração de Projetos promovidos pela SUDENE em parceria com a Fundação Getúlio Vargas e a Escola Interamericana de Administração Pública</p>
+
+    <p>Especialização em Administração de Serviços de Saúde pela Universidade Federal de Pernambuco / Centro de Ciências da Sáude / Departamento de Medicina Social</p>
+
+    <p>Especialização em Gestão em Vigilância Ambiental pela Fundação Oswaldo Cruz - Centro de Pesquisa Ageu Magalhães/Fundação Oswaldo Cruz - FioCruz/ Ministério da Saúde</p>
+ 
+</div>
+
+</div>
+
+</section>
+
+<section id="experiencia">
+
+<h2 class="title">Experiência Profissional</h2>
+
+<div class="project">
+
+<div class="project-content">
+
+<b><p>Experiência Profissional:</p></b>
+
+    <p> Gerente Substituto da Vigilância Sanitária do Estado de Pernambuco</p>
+
+    <p> Gerente da Divisão de Acompanhamento das Ações de Saneamento da Diretoria Executiva de Saneamento da Diretoria de Desenvolvimento Institucional;</p>
+
+    <p> Gerente de Aprovação de Projetos e Ficalização de Obras de Saneamento da Diretoria Executiva de Saneamento da Diretoria de Desenvolvimento Institucional;</p>
+
+    <p> Gerente do Departamento de Vigilância Sanitária do Município de Olinda</p>
+
+    <p> Gerente da Divisão de Meio Ambiente e Saneamento do Departamento de Vigilância Sanitária do Municiípio de Olinda</p>
+
+    <p> Assessoria à Vigilãncia Sanitária do Município de São Lourenço da Mata;</p>
+
+    <p> Coordenador de Vigilância Ambiental em Saúde de Pernambuco vinculado ao Centro Nacional de Epidemiologia do Ministério da Saúde</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="cursos">
+
+<h2 class="title">Cursos</h2>
+
+<div class="project">
+
+<div class="project-content">
+
+<b><p> Cursos: </p></b>
+
+    <p>Universidade Federal de Pernambuco/ UFPE - Engenheiro Civil </p>
+
+    <p>Departamento de Medicina Social (UFPE) - Especialização em Administração dos Serviços de Saúde </p>
+    
+    <p>Escola Interamericana de Administração Púlbica (Fundação Getúlio Vargas)/ Superintendência do Desenvolvimento do Nordeste (SUDENE) - VI Curso de Administração de Projetos</p>
+    
+    <p> Centro de Pesquisas Ageu Magalhães/ FioCruz (Ministério da Saúde) - Curso de Especialização de Gestão em Vigilância Ambiental"</p>
+
+    <p>Secretaria de Meio Ambiente / CETESB - Companhia de Tecnologia de Saneamento Ambiental - "Avaliação e Controle de Ruído e Vibração"</p>
+    <p> FIAM - I Semana de Prevenção de Acidentes de Trabalho"</p>
+
+    <P>Fundacentro - "Didática para facilitadores de aprendizagem em segurança e saúde no trabalho"</p>
+
+    <p>Fundacentro / Defesa Civil - "IV Seminário sobre Prevenção de acidentes químicos ampliados para o sistema
+    nacional de Defesa Civil"</p>
+   
+    <p>Fundacentro / TRE-PE - "IV Congresso Pernambucano do Trabalho Seguro e I Congresso Pernambucano
+    de Combate ao Trabalho INfantil e de Estímulo à Aprendizagem"</p>
+   
+    <p>Secretaria Executiva de Vigilância em Saúde - SES/PE - "VI Encontro Macroregional Nordeste em Saúde do Trabalhador e da Trabalhadora"</p>
+    
+    <p>Escola Politécnica de Pernambuco/UPE - Curso de Especialização em Engenharia de Segurança do Trabalho </p>
+
+    <p>Codecipe/ Defesa Civil -"VI Curso de Prevenção e Preparação para Emergências com Produtos Químicos - PEQUIM" </p>
+
+    <p>II Semninário do Fórum Pernambucano de Combate aos Efeitos dos Agrotóxicos na Saúde do Trabalhador, no Meio Ambiente e na Sociedade"</p>
+    
+    <p>Fundação de Saúde Amaury de Medeiros / SES-PE - "Curso de Poluição Sonora"</p>
+
+    <p>Secretaria de Saúde de Pernambuco / Agência Pernambucan de Vigilância Sanitária - Treinamento sobre incidentes com Agentes QBRN (Químico, Biológico, Radiológico e Nuclear)</p>
+
+
+    <p>Norteste "Curso de Segurança para Manuseio e Transporte de Cloro e o seu Impacto no Meio Ambiente"</p>
+
+    <p>SUS / Ministério da Sáude - Treinamento em Ameaças Químicas, Biológicas, Radiológicas e Nucleares (QBRN)</p>
+
+
+</div>
+
+</div>
+
+</section>
+
+<!-- CERTIFICADOS -->
+
+<section id="certificados">
+
+<h2 class="title">Certificados e Fotos</h2>
+
+<div class="carrossel-container">
+
+<button class="btn-carrossel prev">&#10094;</button>
+
+<div class="carrossel">
+
+<img src="./img/certificado01.jpeg" alt="Certificado 1">
+
+<img src="./img/certificado02.jpeg" alt="Certificado 2">
+
+<img src="./img/certificado03.jpeg" alt="Certificado 3">
+
+<img src="./img/certificado04.jpeg" alt="Certificado 4">
+
+<img src="./img/certificado05.jpeg" alt="Certificado 5">
+
+<img src="./img/certificado06.jpeg" alt="Certificado 6">
+
+<img src="./img/certificado07.jpeg" alt="Certificado 7">
+
+<img src="./img/certificado08.jpeg" alt="Certificado 8">
+
+<img src="./img/certificado09.jpeg" alt="Certificado 9">
+
+<img src="./img/certificado10.jpeg" alt="Certificado 10">
+
+<img src="./img/certificado11.jpeg" alt="Certificado 11">
+
+<img src="./img/certificado12.jpeg" alt="Certificado 12">
+
+<img src="./img/certificado13.jpeg" alt="Certificado 13">
+
+<img src="./img/certificado14.jpeg" alt="Certificado 14">
+
+<img src="./img/certificado15.jpeg" alt="Certificado 15">
+
+<img src="./img/certificado16.jpeg" alt="Certificado 16">
+
+<img src="./img/certificado17.jpeg" alt="Certificado 17">
+
+</div>
+
+<button class="btn-carrossel next">&#10095;</button>
+
+</div>
+
+<div class="indicadores">
+
+<span class="indicador ativo"></span>
+<span class="indicador"></span>
+<span class="indicador"></span>
+<span class="indicador"></span>
+<span class="indicador"></span>
+
+</div>
+
+</section>
+
+<section id="contato">
+
+<h2 class="title">Contato</h2>
+
+<div class="cards">
+
+<div class="card">
+<h3>Email</h3>
+<p>robertoccoelho1950@gmail.com</p>
+</div>
+
+<div class="card">
+<h3>WhatsApp</h3>
+<p>(81) 99945-2775</p>
+</div>
+
+<div class="card">
+<h3>LinkedIn</h3>
+<p>linkedin.com/in/engenheiro</p>
+</div>
+
+</div>
+
+</section>
+
+<footer>
+© 2026 - Roberto Costa Coêlho | Todos os direitos reservados.
+</footer>
+
+<script>
+
+const carrossel = document.querySelector('.carrossel');
+const imagens = document.querySelectorAll('.carrossel img');
+
+const prev = document.querySelector('.prev');
+const next = document.querySelector('.next');
+
+const indicadores = document.querySelectorAll('.indicador');
+
+let index = 0;
+
+function atualizarCarrossel(){
+
+  carrossel.style.transform =
+  `translateX(-${index * 100}%)`;
+
+  indicadores.forEach(ind =>
+    ind.classList.remove('ativo')
+  );
+
+  indicadores[index].classList.add('ativo');
+
+}
+
+next.addEventListener('click', ()=>{
+
+  index++;
+
+  if(index >= imagens.length){
+    index = 0;
+  }
+
+  atualizarCarrossel();
+
+});
+
+prev.addEventListener('click', ()=>{
+
+  index--;
+
+  if(index < 0){
+    index = imagens.length - 1;
+  }
+
+  atualizarCarrossel();
+
+});
+
+indicadores.forEach((item, i)=>{
+
+  item.addEventListener('click', ()=>{
+
+    index = i;
+
+    atualizarCarrossel();
+
+  });
+
+});
+
+setInterval(()=>{
+
+  index++;
+
+  if(index >= imagens.length){
+    index = 0;
+  }
+
+  atualizarCarrossel();
+
+}, 5000);
+
+</script>
+
+</body>
+</html>
